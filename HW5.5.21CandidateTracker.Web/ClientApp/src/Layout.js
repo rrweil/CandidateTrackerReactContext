@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import {CandidateCounterContext} from './CandidateCounterContext';
 
 const Layout = ({ children }) => {
+const {pendingCount, refusedCount, confirmedCount } = useContext(CandidateCounterContext);
+
     return (
         <div>
             <header>
@@ -26,7 +29,17 @@ const Layout = ({ children }) => {
                                 </li>
                                 <li className="nav-item">
                                     <Link to='/pending' className='nav-link text-light'>
-                                        Pending
+                                        Pending ({pendingCount})
+                                    </Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link to='/confirmed' className='nav-link text-light'>
+                                        Confirmed ({confirmedCount})
+                                    </Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link to='/refused' className='nav-link text-light'>
+                                        Refused ({refusedCount})
                                     </Link>
                                 </li>
                             </ul>

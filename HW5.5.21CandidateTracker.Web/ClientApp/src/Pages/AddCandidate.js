@@ -1,25 +1,28 @@
-import React, { useState} from 'react';
+import React, { useContext} from 'react';
 import axios from 'axios';
 import {useHistory} from 'react-router-dom';
-
+import {CandidateCounterContext} from '../CandidateCounterContext';
 
 const AddCandidate = () => {
     
-    const [candidate, setCandidate] = useState({});
     const history = useHistory();
+    const {draftCandidate, setDraftCandidate, updateCounts} = useContext(CandidateCounterContext);
+  
 
     const onTextChange = e => {
-        const copy = { ...candidate };
+        const copy = { ...draftCandidate };
         copy[e.target.name] = e.target.value;
-        setCandidate(copy);
+        setDraftCandidate(copy);
     }
 
     const onAddCandidateClick = async () => {
-        await axios.post('/api/candidate/addcandidate', {candidate});
+        await axios.post('/api/candidate/addcandidate', draftCandidate);
+        setDraftCandidate({});
+        updateCounts();
         history.push('/');
     }
 
-    const { firstName, lastName, phoneNumber, email, notes } = candidate;
+    const { firstName, lastName, phoneNumber, email, notes } = draftCandidate;
 
     return (
         <div className="row ">

@@ -22,7 +22,7 @@ namespace HW5._5._21CandidateTracker.Web.Controllers
 
         [HttpPost]
         [Route("addCandidate")]
-        public void AddCandidate (Candidate candidate)
+        public void AddCandidate(Candidate candidate)
         {
             var repo = new CandidateRepository(_connectionString);
             candidate.Status = Status.Pending;
@@ -31,11 +31,35 @@ namespace HW5._5._21CandidateTracker.Web.Controllers
 
         [HttpGet]
         [Route("getCandidates")]
-        public List<Candidate> GetCandidates (Status status)
+        public List<Candidate> GetCandidates(Status status)
         {
             var repo = new CandidateRepository(_connectionString);
             return repo.GetCandidates(status);
         }
 
+        [HttpGet]
+        [Route("getCandidate")]
+        public Candidate GetCandidate(int id)
+        {
+            var repo = new CandidateRepository(_connectionString);
+            return repo.GetCandidate(id);
+        }
+
+        [HttpPost]
+        [Route("UpdateCandidate")]
+        public void UpdateCandidateStatus(Candidate candidate)
+        {
+
+            var repo = new CandidateRepository(_connectionString);
+            repo.UpdateCandidate(candidate);
+         }
+
+        [HttpGet]
+        [Route("GetCounts")]
+        public List<int> GetCounts()
+        {
+            var repo = new CandidateRepository(_connectionString);
+            return repo.getCounts();
+        }
     }
 }

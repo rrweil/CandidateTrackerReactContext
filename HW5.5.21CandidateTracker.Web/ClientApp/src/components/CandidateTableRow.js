@@ -1,24 +1,15 @@
 import React from 'react';
 
-// const CandidateTableRow = ({candidate}) => {
-//     const {firstName, lastName, phoneNumber, email} = candidate;
-//     return (<tr>
-//         <td>VIEW DETAILS _ TO FIX</td>
-//         <td>{firstName}</td>
-//         <td>{lastName}</td>
-//         <td>{phoneNumber}</td>
-//         <td>{email}</td>
-//     </tr>);
-// }
-
-const CandidateTableRow = () => {
-    // console.log(props.candidate);
+const CandidateTableRow = ({candidate, showNotes}) => {
+    const {firstName, lastName, phoneNumber, email, notes} = candidate;
     return (<tr>
-        
+        <td>{firstName}</td>
+        <td>{lastName}</td>
+        <td>{phoneNumber}</td>
+        <td>{email}</td>
+        {!showNotes && <td>{notes}</td>}
     </tr>);
 }
 
 
-
-
-export default CandidateTableRow();
+export default CandidateTableRow;
